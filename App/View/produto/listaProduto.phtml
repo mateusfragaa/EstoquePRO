@@ -1,0 +1,55 @@
+<div class="container-fluid mb-5">
+
+    <div class="d-flex justify-content-end align-items-center mb-3 gap-2 sticky-top bg-white py-2" style="top: 56px; z-index: 1020;">
+        <a href="/produto/cadastro" class="btn btn-outline-danger btn-sm px-3">
+            <i class="bi bi-plus-lg"></i> Cadastrar
+        </a>
+
+        <button class="btn btn-outline-primary btn-sm px-3" id="btnVisualizar" type="submit">
+            <i class="bi bi-eye-fill"></i> Visualizar
+        </button>
+
+        <a href="/produto/editar" class="btn btn-outline-warning btn-sm px-3" id="btnEditar">
+            <i class="bi bi-pencil"></i> Editar
+        </a>
+
+        <a href="/produto/deletar" class="btn btn-outline-secondary btn-sm px-3" id="btnExcluir">
+            <i class="bi bi-trash"></i> Excluir
+        </a>
+    </div>
+
+    <div class="table-responsive shadow-sm border rounded-3">
+        <table class="table table-hover align-middle m-0">
+            <thead class="table-danger" style="font-size: 0.8rem; white-space: nowrap;">
+                <tr>
+                    <th class="ps-4" style="width: 40px;">
+                        <input class="form-check-input" type="checkbox" id="checkAll">
+                    </th>
+                    <th>Código</th>
+                    <th>Descrição</th> 
+                    <th>Status</th>
+                    <th>Categoria</th>
+                    <th class="pe-4">Finalidade</th>
+                </tr>
+            </thead>
+            <tbody class="text-secondary" style="font-size: 0.95rem;">
+                    <?php foreach ($this->view->listProducts as $key => $value) : ?>
+                        <tr>
+                            <td class="ps-4">
+                                <input class="form-check-input row-checkbox" type="checkbox" name="item[]" value="<?= $value['PRODUTO_ID'] ?>">
+                            </td>
+                            <td class="fw-bold text-dark">#<?= $value['PRODUTO_ID'] ?></td>
+                            <td class="fw-medium text-dark text-capitalize text-truncate" style="max-width: 250px;">
+                                <?= $value['PRD_NOME'] ?>
+                            </td>
+                            <td>
+                                <span class="badge bg-success-subtle text-success border border-success-subtle fw-normal"><?= $value['PRD_STATUS_ID'] ?></span>
+                            </td>
+                            <td><span class="text-dark"><?=$value['PRD_CATEGORIA_ID']?></span></td>
+                            <td class="fw-bold text-dark pe-4"><?=$value['PRD_GRUPO_FIN_ID']?></td>
+                        </tr>
+                    <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>

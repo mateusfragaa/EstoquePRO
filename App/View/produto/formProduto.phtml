@@ -1,0 +1,69 @@
+<?php 
+if (!empty($_SESSION['produto']) && count($_SESSION['produto']) >= 3){
+    components('modal');
+}
+?>
+<div class="container mt-5 mb-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-white">
+            <h5 class="mb-0"><?= $this->view->form['acao'] ?? ''?> de Produto</h5>
+        </div>
+        <div class="card-body">
+            <form method="post" action="<?= $this->view->form['action'] ?? '' ?>">
+                <div class="row mb-3">
+                    <div class="col-md-8">
+                        <label class="form-label">Nome do Produto</label>
+                        <input type="text" class="form-control" placeholder="Nome produto" name="produto"
+                        value="<?= isset($this->view->form['data']) ? $this->view->form['data']['PRD_NOME'] : ""?>"
+                        >
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">NCM</label>
+                        <input type="text" class="form-control" placeholder="0000.00.00" name="ncm"
+                        value="<?= isset($this->view->form['data']) ? $this->view->form['data']['PRD_NCM'] : ""?>"
+                        >
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Categoria</label>
+                        <select class="form-select" name="categoria">
+                            <option
+                                value="1"
+                            >Sobremesa</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Grupo Finalidade</label>
+                        <select class="form-select" name="grupo">
+                            <option value="1"
+                            >Revenda</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Setor</label>
+                        <select class="form-select" name="setor">
+                            <option value="1"
+                            >Padaria</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Status</label>
+                        <select class="form-select" name="status">
+                            <option value="1">Ativo</option>
+                            <option value="2">Inativo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <a href="/produto/listagem" class="btn btn-light me-2">Voltar</a>
+                    <?php if (isset($this->view->form['acao']) && $this->view->form['acao']  != 'Visualização') :?>
+                        <button type="submit" class="btn btn-primary px-5">Salvar Produto</button>
+                    <?php endif; ?>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

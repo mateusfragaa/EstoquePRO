@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*
+=====================================
+    navbar hover button
+====================================
+*/
+a.nav-link {
+    color: #ffffff;
+    padding: 8px 16px !important; /* Aumenta a área de clique */
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+a.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Fundo branco translúcido */
+    color: #ffffff;
+    transform: translateY(-1px); /* Leve subida */
+}
+
+/*
+=====================================
+    imagem central view-index.php
+=====================================
+*/
+
+#imagem-central img{
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/*
+Tabela produtos
+*/
+#borda{
+    border-radius: 15px ;
+}
+
+
+

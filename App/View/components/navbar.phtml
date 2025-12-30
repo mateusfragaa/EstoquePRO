@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-sm bg-danger navbar-dark shadow-sm sticky-top " style="z-index: 1030;">
+    <div class="container">
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+            <img src="/assets/img/icon-fundo.png" alt="Logo" width="30" height="24" class="me-2">
+            ESTOQUE<span class="text-dark">PRO</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarScroll">
+
+            <ul class="navbar-nav mx-auto">
+                <?php if (!isset($_SESSION['usuarioLogin'])) :?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sistema</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sobre nós</a>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                            Cadastros
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/produto/listagem">Produto</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <?php endif ?>
+            </ul>
+
+
+            <div class="d-flex align-items-center">
+                <?php if (!isset($_SESSION['usuarioLogin'])) :?>
+                    <a class="btn btn-outline-light btn-sm" href="/login">
+                        <i class="bi bi-box-arrow-right"></i> Login
+                    </a>
+                <?php else :?>
+                    <a class="btn btn-outline-light btn-sm" href="/logout">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </a>
+                    <span class="badge text-bg-light disabled ms-2 p-2">
+                        <span><?= $_SESSION['usuarioLogin']['userNivel'] ?? ''?></span>
+                    </span>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</nav>
