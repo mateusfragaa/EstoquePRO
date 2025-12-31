@@ -6,8 +6,6 @@ use App\Core\Request;
 
 class ProdutoController extends Action
 {   
-    // Todos os dados inseridos aqui se tornam acessíveis nas views
-    protected array $dependencias = [];
     protected Request $request;
 
     public function __construct()
@@ -15,22 +13,23 @@ class ProdutoController extends Action
         parent::__construct();
         $this->request = new Request();
         $this->request->preencherAttr($_SERVER['REQUEST_URI']);
-        $this->initDependencias();
+        $this->view->form['dados'] = $this->dadosForm();
     }
 
-    public function initDependencias() :void
+    private function dadosForm() :array
     {
-        $this->dependencias['setor'] = Container::getModel('Setor');
-        $this->dependencias['finalidade'] =  Container::getModel('GrupoFinalidade');
-        $this->dependencias['categoria'] =  Container::getModel('Categoria');
-        $this->dependencias['produto'] =  Container::getModel('Produto');
-        $this->dependencias['form']['produtoId'] = $this->request->getId();
+        return [
+            'setor' => Container::getModel('Setor')->select()->execute(),
+            'finalidade'=>  Container::getModel('GrupoFinalidade')->select()->execute(),
+            'categoria' =>  Container::getModel('Categoria')->select()->execute(),
+            'formProdutoAcao' => Container::getModel('Produto')->firstOrFail('produto_id',$this->request->getId())  
+        ];
     }
 
-    public function cadastro() :void
+    public function formcadastro() :void
     {   
-        $this->dependencias['form']['acao'] = 'Cadastro';
-        $this->dependencias['form']['action'] = '/produto/cadastrar';
+        $this->view->form['acao'] = 'Cadastro';
+        $this->view->form['action'] = '/produto/cadastrar';
         $this->render('formProduto');
     }
 
@@ -49,13 +48,14 @@ class ProdutoController extends Action
 
     public function listagem() :void
     {   
+        $this->view->form['dados']['produto'] = Container::getModel('Produto')->select()->execute();
         $this->render('listaProduto');
     }
     
     public function view() :void
     {
-        $this->dependencias['form']['acao'] = 'Visualização';
-        $this->dependencias['form']['action'] = '/produto/cadastrar';
+        $this->view->form['acao'] = 'Visualização';
+        $this->view->form['action'] = '#';
         $this->render('formProduto');
     }
 }

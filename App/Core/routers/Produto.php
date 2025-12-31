@@ -5,7 +5,7 @@ $controller = "ProdutoController";
 $rotas['FormularioCadastro'] = [
     "route" => "/produto/cadastro",
     "controller" => $controller,
-    "action" => "cadastro"
+    "action" => "formcadastro"
 ];
 
 $rotas['CadastrarProduto'] = [
