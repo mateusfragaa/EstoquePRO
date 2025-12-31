@@ -2,27 +2,29 @@
 if (!empty($_SESSION['produto']) && count($_SESSION['produto']) >= 3){
     components('modal');
 }
+    var_dump($teste);
 ?>
 <div class="container mt-5 mb-5">
     <div class="card shadow-sm">
         <div class="card-header bg-white">
-            <h5 class="mb-0"><?= $this->view->form['acao'] ?? ''?> de Produto</h5>
+            <h5 class="mb-0"><?= $this->dependencias['form']['acao'] ?? ''?> de Produto</h5>
         </div>
         <div class="card-body">
-            <form method="post" action="<?= $this->view->form['action'] ?? '' ?>">
+            <form method="post" action="<?= $this->dependencias['form']['action'] ?? '' ?>">
                 <div class="row mb-3">
                     <div class="col-md-8">
                         <label class="form-label">Nome do Produto</label>
-                        <input type="text" class="form-control" placeholder="Nome produto" name="produto"
-                        value="<?= isset($this->view->form['data']) ? $this->view->form['data']['PRD_NOME'] : ""?>"
+                        <input type="text" class="form-control " placeholder="Nome produto" name="produto"
+                        value="oi"
                         >
                     </div>
+
                     <div class="col-md-4">
                         <label class="form-label">NCM</label>
                         <input type="text" class="form-control" placeholder="0000.00.00" name="ncm"
-                        value="<?= isset($this->view->form['data']) ? $this->view->form['data']['PRD_NCM'] : ""?>"
-                        >
+                        value="12345678">
                     </div>
+
                 </div>
 
                 <div class="row mb-3">

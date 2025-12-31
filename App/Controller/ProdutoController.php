@@ -6,16 +6,31 @@ use App\Core\Request;
 
 class ProdutoController extends Action
 {   
+    // Todos os dados inseridos aqui se tornam acessíveis nas views
+    protected array $dependencias = [];
+    protected Request $request;
+
     public function __construct()
     {
         parent::__construct();
-        Request::preencherAttr($_SERVER['REQUEST_URI']);
+        $this->request = new Request();
+        $this->request->preencherAttr($_SERVER['REQUEST_URI']);
+        $this->initDependencias();
+    }
+
+    public function initDependencias() :void
+    {
+        $this->dependencias['setor'] = Container::getModel('Setor');
+        $this->dependencias['finalidade'] =  Container::getModel('GrupoFinalidade');
+        $this->dependencias['categoria'] =  Container::getModel('Categoria');
+        $this->dependencias['produto'] =  Container::getModel('Produto');
+        $this->dependencias['form']['produtoId'] = $this->request->getId();
     }
 
     public function cadastro() :void
     {   
-        $this->view->form['acao'] = 'Cadastro';
-        $this->view->form['action'] = '/produto/cadastrar';
+        $this->dependencias['form']['acao'] = 'Cadastro';
+        $this->dependencias['form']['action'] = '/produto/cadastrar';
         $this->render('formProduto');
     }
 
@@ -34,17 +49,13 @@ class ProdutoController extends Action
 
     public function listagem() :void
     {   
-        $prod = Container::getModel('Produto');
-        $this->view->listProducts = $prod->select()->execute();
         $this->render('listaProduto');
     }
     
     public function view() :void
     {
-        $prod = Container::getModel('Produto');
-        $this->view->form['data'] = $prod->firstOrFail('produto_id',Request::getId());
-        $this->view->form['acao'] = 'Visualização';
-        $this->view->form['action'] = '/produto/cadastrar';
+        $this->dependencias['form']['acao'] = 'Visualização';
+        $this->dependencias['form']['action'] = '/produto/cadastrar';
         $this->render('formProduto');
     }
 }

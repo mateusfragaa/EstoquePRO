@@ -1,34 +1,34 @@
 <?php
 namespace App\Core;
 
-abstract class Request
+class Request
 {
-    private static string $controller;
-    private static string $metodo;
-    private static int $id;
+    private string $controller;
+    private string $metodo;
+    private int $id;
 
-    public static function preencherAttr(string $url): void
+    public function preencherAttr(string $url): void
     {
         $url = parse_url($url, PHP_URL_PATH);
 
         $partes = explode('/', trim($url, '/'));
-        self::$controller = $partes[0] ?? '';
-        self::$metodo     = $partes[1] ?? '';
-        self::$id         = isset($partes[2]) ? (int)$partes[2] : 0;
+        $this->controller = $partes[0] ?? '';
+        $this->metodo     = $partes[1] ?? '';
+        $this->id         = isset($partes[2]) ? (int)$partes[2] : 0;
     }
 
-    public static function getController(): string
+    public function getController(): string
     {
-        return self::$controller;
+        return $this->controller;
     }
 
-    public static function getMetodo(): string
+    public function getMetodo(): string
     {
-        return self::$metodo;
+        return $this->metodo;
     }
 
-    public static function getId(): int
+    public function getId(): int
     {
-        return self::$id;
+        return $this->id;
     }
 }
