@@ -1,3 +1,10 @@
+<?php 
+if (isset($_SESSION['produto']) && !empty($_SESSION['produto']) && count($_SESSION['produto']) >= 3){
+    components('modal');
+}elseif (isset($_GET['exclusao']) && $_GET['exclusao'] == 1) {
+    components('modalExclusao');
+}
+?>
 <div class="container-fluid mb-5">
 
     <div class="d-flex justify-content-end align-items-center mb-3 gap-2 sticky-top bg-white py-2" style="top: 56px; z-index: 1020;">
@@ -9,13 +16,13 @@
             <i class="bi bi-eye-fill"></i> Visualizar
         </button>
 
-        <a href="/produto/editar" class="btn btn-outline-warning btn-sm px-3" id="btnEditar">
+        <button class="btn btn-outline-warning btn-sm px-3" id="btnEditar">
             <i class="bi bi-pencil"></i> Editar
-        </a>
+        </button>
 
-        <a href="/produto/deletar" class="btn btn-outline-secondary btn-sm px-3" id="btnExcluir">
+        <button class="btn btn-outline-secondary btn-sm px-3" id="btnExcluir">
             <i class="bi bi-trash"></i> Excluir
-        </a>
+        </button>
     </div>
 
     <div class="table-responsive shadow-sm border rounded-3">
@@ -27,6 +34,8 @@
                     </th>
                     <th>Código</th>
                     <th>Descrição</th> 
+                    <th>Ncm</th> 
+                    <th>Data Registro</th> 
                     <th>Status</th>
                     <th>Categoria</th>
                     <th class="pe-4">Finalidade</th>
@@ -42,11 +51,17 @@
                             <td class="fw-medium text-dark text-capitalize text-truncate" style="max-width: 250px;">
                                 <?= $value['PRD_NOME'] ?>
                             </td>
-                            <td>
-                                <span class="badge bg-success-subtle text-success border border-success-subtle fw-normal"><?= $value['PRD_STATUS_ID'] ?></span>
+                            <td class="fw-medium text-dark text-capitalize text-truncate" style="max-width: 250px;">
+                                <?= $value['PRD_NCM'] ?>
                             </td>
-                            <td><span class="text-dark"><?=$value['PRD_CATEGORIA_ID']?></span></td>
-                            <td class="fw-bold text-dark pe-4"><?=$value['PRD_GRUPO_FIN_ID']?></td>
+                            <td class="fw-medium text-dark text-capitalize text-truncate" style="max-width: 250px;">
+                                <?= DateTime::createFromFormat('Y-m-d',$value['PRD_DT_REGISTRO'])->format('d/m/Y') ?>
+                            </td>
+                            <td>
+                                <span class="badge bg-success-subtle text-success border border-success-subtle fw-normal"><?= $value['STS_DESCRICAO'] ?></span>
+                            </td>
+                            <td><span class="fw-medium text-dark"><?=$value['CAT_NOME']?></span></td>
+                            <td class="fw-medium text-dark pe-4"><?=$value['GRP_NOME']?></td>
                         </tr>
                     <?php endforeach; ?>
             </tbody>

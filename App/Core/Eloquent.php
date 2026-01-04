@@ -86,6 +86,18 @@ abstract class Eloquent{
     }
 
     /**
+     * Deve receber strings como valores do array (nome colunas)
+     * ['coluna_1','coluna_2'];
+     * @param array $colunas 
+     * @return objeto
+     */
+    public function selectView(string $view) :object
+    {   
+        array_push($this->selectData, "SELECT * FROM $view");
+        return $this;
+    }
+
+    /**
      * Deve receber string como valores do array interno encapsulado por um array externo array de arrays, para cada Join deve-se     * criar um array interno
      * Fazendo 1 Join -> [['tipo join','tabela add','idTblModel','idTblAdd']];
      * Fazendo 2 Join -> [['tipo join','tabela add','idTblModel','idTblAdd'], ['tipo join','tabela add','idTblModel','idTblAdd']];
@@ -180,8 +192,6 @@ abstract class Eloquent{
     public function execute(bool $retorno = true) :array | bool
     {
         $sql = implode(' '.PHP_EOL,$this->selectData);
-        /*var_dump($this->bindsParam);
-        var_dump($sql);*/
         $stmt = $this->conexao->prepare($sql);
         $stmt->execute($this->bindsParam);
         $this->clearArray();

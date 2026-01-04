@@ -20,8 +20,32 @@ $rotas['VisualizarProduto'] = [
     "action" => "view"
 ];
 
-$rotas['Listagem'] = [
+$rotas['ListagemProduto'] = [
     "route" => "/produto/listagem",
     "controller" => $controller,
     "action" => "listagem"
+];
+
+$rotas['FormularioEditar'] = [
+    "route" => "/produto/edicao",
+    "controller" => $controller,
+    "action" => "formEditar"
+];
+
+$rotas['EditarProduto'] = [
+    "route" => "/produto/editar",
+    "controller" => $controller,
+    "action" => "editar"
+];
+
+$rotas['FormularioExcluir'] = [
+    "route" => "/produto/exclusao",
+    "controller" => $controller,
+    "action" => "formExcluir"
+];
+
+$rotas['ExcluirProduto'] = [
+    "route" => "/produto/excluir",
+    "controller" => $controller,
+    "action" => "excluir"
 ];

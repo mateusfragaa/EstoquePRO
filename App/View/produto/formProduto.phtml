@@ -1,8 +1,8 @@
 <?php 
-if (!empty($_SESSION['produto']) && count($_SESSION['produto']) >= 3){
+$acao = $this->view->form['acao'];
+if (isset($_SESSION['produto']) && !empty($_SESSION['produto']) && count($_SESSION['produto']) >= 3){
     components('modal');
 }
-var_dump($this->view->form['dados']);
 ?>
 <div class="container mt-5 mb-5">
     <div class="card shadow-sm">
@@ -11,56 +11,56 @@ var_dump($this->view->form['dados']);
         </div>
         <div class="card-body">
             <form method="post" action="<?= $this->view->form['action'] ?? '' ?>">
-                <div class="row mb-3">
-                    <div class="col-md-8">
-                        <label class="form-label">Nome do Produto</label>
-                        <input type="text" class="form-control " placeholder="Nome produto" name="produto"
-                        value=""
-                        >
+                <div class="<?= ($acao == 'Visualização' || $acao == 'Exclusão') ? 'pe-none' : ''  ?>">
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <label class="form-label">Nome do Produto</label>
+                            <input type="text" class="form-control " placeholder="Nome produto" name="produto"
+                            value="<?=$this->view->form['dados']['formProdutoAcao']['PRD_NOME'] ?? '' ?>">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">NCM</label>
+                            <input type="text" class="form-control" placeholder="0000.00.00" name="ncm"
+                            value="<?=$this->view->form['dados']['formProdutoAcao']['PRD_NCM'] ?? '' ?>">
+                        </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <label class="form-label">NCM</label>
-                        <input type="text" class="form-control" placeholder="0000.00.00" name="ncm"
-                        value="12345678">
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Categoria</label>
+                            <select class="form-select" name="categoria">
+                                <?php foreach($this->view->form['dados']['categoria'] as $value):?>
+                                    <option value="<?=$value['CATEGORIA_ID']?>"><?=$value['CAT_NOME']?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Grupo Finalidade</label>
+                            <select class="form-select" name="grupo">
+                                <?php foreach($this->view->form['dados']['finalidade'] as $value):?>
+                                    <option value="<?=$value['GRUPO_PRD_FIN_ID']?>"><?=$value['GRP_NOME']?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Setor</label>
+                            <select class="form-select" name="setor">
+                                <?php foreach($this->view->form['dados']['setor'] as $value):?>
+                                    <option value="<?=$value['SETOR_ID']?>"><?=$value['STR_NOME']?></option>
+                                <?php endforeach;?>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Status</label>
+                            <select class="form-select" name="status">
+                                <option value="1">Ativo</option>
+                                <option value="2">Inativo</option>
+                            </select>
+                        </div>
                     </div>
 
                 </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-4">
-                        <label class="form-label">Categoria</label>
-                        <select class="form-select" name="categoria">
-                            <?php foreach($this->view->form['dados']['categoria'] as $value):?>
-                                <option value="<?=$value['CATEGORIA_ID']?>"><?=$value['CAT_NOME']?></option>
-                            <?php endforeach;?>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Grupo Finalidade</label>
-                        <select class="form-select" name="grupo">
-                            <?php foreach($this->view->form['dados']['finalidade'] as $value):?>
-                                <option value="<?=$value['GRUPO_PRD_FIN_ID']?>"><?=$value['GRP_NOME']?></option>
-                            <?php endforeach;?>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <label class="form-label">Setor</label>
-                        <select class="form-select" name="setor">
-                            <?php foreach($this->view->form['dados']['setor'] as $value):?>
-                                <option value="<?=$value['SETOR_ID']?>"><?=$value['STR_NOME']?></option>
-                            <?php endforeach;?>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <label class="form-label">Status</label>
-                        <select class="form-select" name="status">
-                            <option value="1">Ativo</option>
-                            <option value="2">Inativo</option>
-                        </select>
-                    </div>
-                </div>
-
                 <div class="text-end">
                     <a href="/produto/listagem" class="btn btn-light me-2">Voltar</a>
                     <?php if (isset($this->view->form['acao']) && $this->view->form['acao']  != 'Visualização') :?>
