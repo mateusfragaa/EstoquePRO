@@ -15,6 +15,7 @@ class Rotas extends Bootstrap{
 
         require_once "routers/Auth.php";
         require_once "routers/Produto.php";
+        require_once "routers/Estoque.php";
 
         $this->__set('rotas', $rotas);
     }

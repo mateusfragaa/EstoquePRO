@@ -12,15 +12,15 @@ if (isset($_SESSION['produto']) && !empty($_SESSION['produto']) && count($_SESSI
             <i class="bi bi-plus-lg"></i> Cadastrar
         </a>
 
-        <button class="btn btn-outline-primary btn-sm px-3" id="btnVisualizar" type="submit">
+        <button class="btn btn-outline-primary btn-sm px-3" id="btnProdutoVisualizar" type="submit">
             <i class="bi bi-eye-fill"></i> Visualizar
         </button>
 
-        <button class="btn btn-outline-warning btn-sm px-3" id="btnEditar">
+        <button class="btn btn-outline-warning btn-sm px-3" id="btnProdutoEditar">
             <i class="bi bi-pencil"></i> Editar
         </button>
 
-        <button class="btn btn-outline-secondary btn-sm px-3" id="btnExcluir">
+        <button class="btn btn-outline-secondary btn-sm px-3" id="btnProdutoExcluir">
             <i class="bi bi-trash"></i> Excluir
         </button>
     </div>
@@ -58,7 +58,11 @@ if (isset($_SESSION['produto']) && !empty($_SESSION['produto']) && count($_SESSI
                                 <?= DateTime::createFromFormat('Y-m-d',$value['PRD_DT_REGISTRO'])->format('d/m/Y') ?>
                             </td>
                             <td>
-                                <span class="badge bg-success-subtle text-success border border-success-subtle fw-normal"><?= $value['STS_DESCRICAO'] ?></span>
+                                <span class="badge border  fw-normal
+                                <?= ($value['STS_DESCRICAO'] == "Ativo") ? 
+                                'bg-success-subtle text-success border-success-subtle' :
+                                'bg-danger-subtle text-danger border-danger-subtle' ?>
+                                "><?= $value['STS_DESCRICAO'] ?></span>
                             </td>
                             <td><span class="fw-medium text-dark"><?=$value['CAT_NOME']?></span></td>
                             <td class="fw-medium text-dark pe-4"><?=$value['GRP_NOME']?></td>

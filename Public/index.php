@@ -6,7 +6,6 @@ session_start();
 // echo "</pre>";
 require __DIR__."/../vendor/autoload.php";
 require __DIR__."/../App/helper/helper.php";
-require __DIR__."/../App/helper/tabela.php";
 
 use App\Core\Rotas;
 use App\Core\Ambiente;

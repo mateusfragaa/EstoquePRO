@@ -11,19 +11,19 @@ function getSelectedId() {
 }
 
 // Evento para Visualizar
-document.getElementById('btnVisualizar').addEventListener('click', function () {
+document.getElementById('btnProdutoVisualizar').addEventListener('click', function () {
     const id = getSelectedId();
     if (id) window.location.href = `/produto/view/${id}`;
 });
 
 // Evento para Editar
-document.getElementById('btnEditar').addEventListener('click', function () {
+document.getElementById('btnProdutoEditar').addEventListener('click', function () {
     const id = getSelectedId();
     if (id) window.location.href = `/produto/edicao/${id}`;
 });
 
 // Evento para Excluir
-document.getElementById('btnExcluir').addEventListener('click', function () {
+document.getElementById('btnProdutoExcluir').addEventListener('click', function () {
     const id = getSelectedId();
     if (id) window.location.href = `/produto/exclusao/${id}`;
 });
