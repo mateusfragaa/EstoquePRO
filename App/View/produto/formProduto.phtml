@@ -1,5 +1,6 @@
 <?php 
 $acao = $this->view->form['acao'];
+$prodMod = $this->view->form['dados']['formProdutoAcao'];
 if (isset($_SESSION['produto']) && !empty($_SESSION['produto']) && count($_SESSION['produto']) >= 3){
     components('modal');
 }
@@ -31,7 +32,10 @@ if (isset($_SESSION['produto']) && !empty($_SESSION['produto']) && count($_SESSI
                             <label class="form-label">Categoria</label>
                             <select class="form-select" name="categoria">
                                 <?php foreach($this->view->form['dados']['categoria'] as $value):?>
-                                    <option value="<?=$value['CATEGORIA_ID']?>"><?=$value['CAT_NOME']?></option>
+                                    <option value="<?=$value['CATEGORIA_ID']?>"
+                                        <?= (isset($prodMod['PRD_CATEGORIA_ID']) && 
+                                         $prodMod['PRD_CATEGORIA_ID'] == $value['CATEGORIA_ID']) ? 'selected' : ''?>
+                                    ><?=$value['CAT_NOME']?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>
@@ -39,7 +43,10 @@ if (isset($_SESSION['produto']) && !empty($_SESSION['produto']) && count($_SESSI
                             <label class="form-label">Grupo Finalidade</label>
                             <select class="form-select" name="grupo">
                                 <?php foreach($this->view->form['dados']['finalidade'] as $value):?>
-                                    <option value="<?=$value['GRUPO_PRD_FIN_ID']?>"><?=$value['GRP_NOME']?></option>
+                                    <option value="<?=$value['GRUPO_PRD_FIN_ID']?>"
+                                         <?= (isset($prodMod['PRD_GRUPO_FIN_ID']) && 
+                                         $prodMod['PRD_GRUPO_FIN_ID'] == $value['GRUPO_PRD_FIN_ID']) ? 'selected' : ''?>
+                                    ><?=$value['GRP_NOME']?></option>
                                 <?php endforeach;?>
                             </select>
                         </div>
@@ -54,8 +61,12 @@ if (isset($_SESSION['produto']) && !empty($_SESSION['produto']) && count($_SESSI
                         <div class="col-md-2">
                             <label class="form-label">Status</label>
                             <select class="form-select" name="status">
-                                <option value="1">Ativo</option>
-                                <option value="2">Inativo</option>
+                                <option value="1"
+                                   <?= (isset($prodMod['PRD_STATUS_ID']) && $prodMod['PRD_STATUS_ID'] == 1) ? 'selected' : ''?> 
+                                >Ativo</option>
+                                <option value="2"
+                                    <?= (isset($prodMod['PRD_STATUS_ID']) && $prodMod['PRD_STATUS_ID'] == 2) ? 'selected' : ''?>
+                                >Inativo</option>
                             </select>
                         </div>
                     </div>
