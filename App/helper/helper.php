@@ -3,10 +3,10 @@
  * Fazer a requisição de components
  * @param string $arquivo - nome do arquivo
  */
-function components(string $arquivo) :void
+function components(string $dir, string $arquivo) :void
 {
-    if(PATH_BASE."/App/View/components/$arquivo.phtml"){
-        require_once PATH_BASE."/App/View/components/$arquivo.phtml";
+    if(PATH_BASE."/App/View/components/$dir/$arquivo.phtml"){
+        require_once PATH_BASE."/App/View/components/$dir/$arquivo.phtml";
     }
 }
 

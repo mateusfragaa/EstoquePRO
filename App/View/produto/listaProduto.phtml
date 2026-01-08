@@ -1,8 +1,8 @@
 <?php 
 if (isset($_SESSION['produto']) && !empty($_SESSION['produto']) && count($_SESSION['produto']) >= 3){
-    components('modal');
+    components('produto','modal');
 }elseif (isset($_GET['exclusao']) && $_GET['exclusao'] == 1) {
-    components('modalExclusao');
+    components('produto','modalExclusao');
 }
 ?>
 <div class="container-fluid mb-5">
@@ -28,11 +28,11 @@ if (isset($_SESSION['produto']) && !empty($_SESSION['produto']) && count($_SESSI
     <div class="table-responsive shadow-sm border rounded-3">
         <table class="table table-hover align-middle m-0">
             <thead class="table-danger" style="font-size: 0.8rem; white-space: nowrap;">
-                <tr>
+                <tr >
                     <th class="ps-4" style="width: 40px;">
                         <input class="form-check-input" type="checkbox" id="checkAll">
                     </th>
-                    <th>Código</th>
+                    <th>ID</th>
                     <th>Descrição</th> 
                     <th>Ncm</th> 
                     <th>Data Registro</th> 

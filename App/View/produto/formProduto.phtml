@@ -2,7 +2,7 @@
 $acao = $this->view->form['acao'];
 $prodMod = $this->view->form['dados']['formProdutoAcao'];
 if (isset($_SESSION['produto']) && !empty($_SESSION['produto']) && count($_SESSION['produto']) >= 3){
-    components('modal');
+    components('produto','modal');
 }
 ?>
 <div class="container mt-5 mb-5">

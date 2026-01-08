@@ -6,3 +6,9 @@ $rotas['ListagemEstoque'] = [
     'controller' => $controller,
     'action' => 'listagem'
 ];
+
+$rotas['teste'] = [
+    'route' => '/teste',
+    'controller' => $controller,
+    'action' => 'teste'
+];

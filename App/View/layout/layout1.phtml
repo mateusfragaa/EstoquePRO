@@ -11,16 +11,17 @@
 
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light ">
-  <?php components("navbar") ?>
+  <?php components("page","navbar") ?>
 
   <main class="flex-fill">
     <?= $this->content() ?>
   </main>
 
-  <?php components("footer") ?>
+  <?php components("page","footer") ?>
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   <script src="/assets/js/modal.js"></script>
   <script src="/assets/js/produtoAcoes.js"></script>
+  <script src="/assets/js/setorProduto.js"></script>
 </body>
 </html>

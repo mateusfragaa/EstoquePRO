@@ -1,17 +1,25 @@
 <div class="container-fluid">
     <div class="row bg-white p-2 d-flex align-items-center mb-3">
         <div class="col-md-8 d-flex text-start">
-            <select class="form-select me-3 w-50">
-                <option disabled selected>Setor</option>
-                <option value="">Valor 1</option>
-                <option value="">Valor 2</option>
-            </select>
-            <select class="form-select">
-                <option disabled selected>Produto</option>
-                <option value="">Valor 1</option>
-                <option value="">Valor 2</option>
-            </select>
+            <form class="d-flex flex-row">
+                <input type="radio" class="btn-check btn-dan" name="options-outlined" id="success-outlined" autocomplete="off" value="produto">
+                <label class="btn btn-outline-primary ajuste-tamanho me-2" for="success-outlined">Produto</label>
+
+
+                <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off" value="setor">
+                <label class="btn btn-outline-danger ajuste-tamanho me-2" for="danger-outlined">Setor</label>
+                <select class="form-select ajuste-tamanho me-2 d-none" id="selectSetor" name="setor">
+                    <option value="1">Venda</option>
+                    <option value="2">Revenda</option>
+                </select>
+                <button type="submit" class="btn btn-outline-dark ajuste-tamanho">
+                    <i class="bi bi-funnel-fill "></i>
+                </button>
+            </form>
         </div>
+
+
+
         <div class="col-md-4 text-end">
             <div>
                 <a href="/produto/cadastro" class="btn btn-outline-danger btn-sm px-3">
@@ -33,46 +41,26 @@
         </div>
     </div>
 
-    <div class="table-responsive shadow-sm border rounded-3">
-        <table class="table table-hover align-middle m-0">
-            <thead class="table-danger" style="font-size: 0.8rem; white-space: nowrap;">
-                <tr>
-                    <th class="ps-4" style="width: 40px;">
-                        <input class="form-check-input" type="checkbox" id="checkAll">
-                    </th>
-                    <th>Código</th>
-                    <th>Descrição</th> 
-                    <th>Ncm</th> 
-                    <th>Data Registro</th> 
-                    <th>Status</th>
-                    <th>Categoria</th>
-                    <th class="pe-4">Finalidade</th>
-                </tr>
-            </thead>
-            <tbody class="text-secondary" style="font-size: 0.95rem;">
-                        <tr>
-                            <td class="ps-4">
-                                <input class="form-check-input row-checkbox" type="checkbox" name="item[]" value="">
-                            </td>
-                            <td class="fw-bold text-dark">#1</td>
-                            <td class="fw-medium text-dark text-capitalize text-truncate" style="max-width: 250px;">
-                                teste
-                            </td>
-                            <td class="fw-medium text-dark text-capitalize text-truncate" style="max-width: 250px;">
-                                teste2
-                            </td>
-                            <td class="fw-medium text-dark text-capitalize text-truncate" style="max-width: 250px;">
-                                teste3
-                            </td>
-                            <td>
-                                <span class="badge border bg-success-subtle text-success border-success-subtle fw-normal">teste4</span>
-                            </td>
-                            <td><span class="fw-medium text-dark">teste5</span></td>
-                            <td class="fw-medium text-dark pe-4">teste6</td>
-                        </tr>
-            </tbody>
-        </table>
+    
+        <?php
+        if (isset($_GET['options-outlined']) && $_GET['options-outlined'] == 'setor') {
+            components('estoque','tabelaSetor');
+        } else if (isset($_GET['options-outlined']) && $_GET['options-outlined'] == 'produto'){
+            components('estoque','tabelaProduto');
+        }else{
+        ?>
+            <div class="container mt-5">
+                <div class="row">
+                    <div id="imagem-central" class="col-12 d-flex justify-content-center flex-column align-items-center">
+                        <img src="/assets/img/imagemcentral.jpg" alt="estoquePRO" class="img-fluid">
+                        <div class="text-center mt-3">
+                            <p class="fw-bold fs-5 mb-0">ESTOQUE<span class="text-danger">PRO</span></p>
+                            <p class="fst-italic"><b>Gestão inteligente para o seu estoque.<b></p>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        <?php } ?>
+   
     </div>
-</div>
-
 </div>

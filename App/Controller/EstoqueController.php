@@ -9,4 +9,11 @@ class EstoqueController extends Action{
     {
         $this->render('estoque');    
     }
+
+    public function teste() :void
+    {
+        echo '<pre>';
+        print_r($_GET);
+        echo "</pre>";   
+    }
 }
