@@ -3,6 +3,7 @@ namespace App\Controller;
 use MF\Controller\Action;
 use MF\Model\Container;
 use App\Core\Request;
+use Exception;
 
 class ProdutoController extends Action
 {   
@@ -36,8 +37,11 @@ class ProdutoController extends Action
     public function cadastrar() :void
     {   
         try{
+            echo '<pre>';
+            print_r($_POST);
+            echo "</pre>";
             $_SESSION['produto'] = Container::getModel('Produto')->cadastroProduto($_POST)[0];
-        }catch(Exeption $e){
+        }catch(Exception $e){
             var_dump("Erro");
         }
         header('Location: /produto/cadastro');
@@ -70,7 +74,7 @@ class ProdutoController extends Action
         try{
             $_SESSION['produto'] = Container::getModel('Produto')->editarProduto($_POST,session('produto_editando_id'))[0];
 
-        }catch(Exeption $e){
+        }catch(Exception $e){
             var_dump("$e");
         }
         header('Location: /produto/listagem');

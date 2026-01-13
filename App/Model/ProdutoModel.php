@@ -21,7 +21,7 @@ class ProdutoModel extends Model
                     $post['categoria'],
                     $post['grupo'],
                     $post['setor'],
-                    $post['status']
+                    $post['status'],
                 ]
             );
         }

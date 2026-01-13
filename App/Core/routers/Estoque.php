@@ -8,7 +8,7 @@ $rotas['ListagemEstoque'] = [
 ];
 
 $rotas['teste'] = [
-    'route' => '/teste',
+    'route' => '/estoque/view',
     'controller' => $controller,
-    'action' => 'teste'
+    'action' => 'produtoSetor'
 ];

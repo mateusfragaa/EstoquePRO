@@ -17,8 +17,7 @@ class AuthController extends Action{
 
         $usuarioModel = Container::getModel('usuario');
         $usuarioModel = $usuarioModel->firstOrFail('us_login',$usuario);
-
-        if(!empty($usuarioModel) && password_verify($senha, $usuarioModel['US_SENHA']) && $usuarioModel['US_STATUS_ID'] == 1){
+         if(!empty($usuarioModel) && password_verify($senha, $usuarioModel['US_SENHA']) && $usuarioModel['US_STATUS_ID'] == 1){
             $_SESSION['usuarioLogin'] = [
                 'userID' => $usuarioModel['USUARIO_ID'],
                 'userNome' => $usuarioModel['US_NOME'],
