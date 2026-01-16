@@ -9,7 +9,7 @@ class ProdutoModel extends Model
     // Como não tem construtor próprio o php busca o construtor da super classe deixando o acessível na classe Model e Model acessível a Eloquent
     protected string $tabela = 'produto';
 
-    public function cadastroProduto(array $post) //: array
+    public function cadastroProduto(array $post) : array
     {   
         if ($this->validarDados($post)) {
             return $this->procedureSP(
@@ -83,5 +83,5 @@ class ProdutoModel extends Model
     }
 
     return $retorno;
-}
+ }
 }

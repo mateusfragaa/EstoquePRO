@@ -4,7 +4,7 @@ $setor = $this->view->setor['dados']['setor'] ?? '';
 <div class="container-fluid">
     <div class="row bg-white p-2 d-flex align-items-center mb-3">
         <div class="col-md-4 d-flex text-start">
-            <form class="d-flex flex-row" action="estoque/view">
+            <form class="d-flex flex-row" action="estoque/filter">
                 <input type="radio" class="btn-check btn-dan" name="options-outlined" id="success-outlined" autocomplete="off" value="produto">
                 <label class="btn btn-outline-primary ajuste-tamanho me-2" for="success-outlined">Produto</label>
 
@@ -40,7 +40,7 @@ $setor = $this->view->setor['dados']['setor'] ?? '';
 
             <div class="col-md-4 text-end">
                 <div>
-                    <a href="/produto/cadastro" class="btn btn-outline-danger btn-sm px-3">
+                    <a href="/estoque/cadastro" class="btn btn-outline-danger btn-sm px-3">
                         <i class="bi bi-plus-lg"></i> Cadastrar
                     </a>
 

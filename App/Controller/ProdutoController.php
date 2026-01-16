@@ -37,9 +37,6 @@ class ProdutoController extends Action
     public function cadastrar() :void
     {   
         try{
-            echo '<pre>';
-            print_r($_POST);
-            echo "</pre>";
             $_SESSION['produto'] = Container::getModel('Produto')->cadastroProduto($_POST)[0];
         }catch(Exception $e){
             var_dump("Erro");

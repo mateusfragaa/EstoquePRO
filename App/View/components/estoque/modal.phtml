@@ -1,20 +1,42 @@
-<div class="modal-dialog modal-dialog-centered">
-  <!-- Modal -->
-  <div class="modal fade" id="estoqueModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<?php $dados = session('setorProduto'); ?>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm mt-2"> 
+        <div class="modal-content border-0 shadow-lg">
+            
+            <div class="modal-header bg-primary text-white border-0 py-2">
+                <h6 class="modal-title d-flex align-items-center" id="exampleModalLabel">
+                    <i class="bi bi-check-circle-fill me-2"></i> Notificação
+                </h6>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-3 text-center">
+                <div class="mb-2">
+                    <div class="text-success mb-1">
+                        <i class="bi bi-box-seam fs-2"></i> 
+                    </div>
+                    <h6 class="text-dark fw-bold mb-0"><?= $dados['mensagem'] ?? 'Sucesso ao inserir' ?></h6>
+                </div>
+
+                <div class="bg-light rounded-2 p-2 border" style="font-size: 0.85rem;">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="text-muted">Código Operação:</span>
+                        <span class="fw-bold"><?= $dados['codigo'] ?? '1' ?></span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Identificador do produto:</span>
+                        <span class="badge bg-danger text-white">
+                            <?= $dados['cod_setor_produto'] ?? '00' ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer border-0 justify-content-center pt-0 pb-3">
+                <a href="/estoque/produto" class="btn btn-sm btn-primary px-3 shadow-sm">Gestão Estoque</a>
+                <button type="button" class="btn btn-sm btn-outline-secondary px-3" data-bs-dismiss="modal">Fechar</button>
+            </div>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-  </div>
 </div>

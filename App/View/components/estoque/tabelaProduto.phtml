@@ -1,4 +1,7 @@
-<?php $produtoSetor = $_SESSION['setorProduto'] ?? []; ?>
+<?php
+$produtoSetor = $_SESSION['setorProduto'] ?? [];
+
+?>
 <div class="table-responsive shadow-sm border rounded-3">
     <table class="table table-hover align-middle m-0">
         <thead class="table-danger" style="font-size: 0.8rem; white-space: nowrap;">
@@ -52,8 +55,7 @@
                        <?=$value['SP_PRECO_VENDA']?>
                     </td>
                     <td>
-                        <button class="btn btn-outline-warning ajuste-tamanho" id="estoqueModal"><?=$value['SP_PRODUTO_LOCAL_INTERNO']?></button>
-
+                        <?=$value['SP_PRODUTO_LOCAL_INTERNO']?>
                     </td>
                 </tr>
             <?php endforeach;?>
