@@ -10,7 +10,7 @@ class EstoqueModel extends Model
     public function setorProdutos(int $idSetor) :array
     {
         return $this->select([
-            'SP_PRODUTO_ID AS PRODUTO_ID','PRD_NOME','SP_SETOR_ID AS SETOR_ID','STR_NOME','SP_QUANTIDADE_ATUAL','SP_QUANTIDADE_MAXIMA','SP_QUANTIDADE_MINIMA','SP_PRODUTO_CUSTO_MEDIO','SP_PRECO_CUSTO','SP_PRECO_VENDA','SP_PRODUTO_LOCAL_INTERNO'
+            'SETOR_ESTOQUE_ID as codigo','SP_PRODUTO_ID AS PRODUTO_ID','PRD_NOME','SP_SETOR_ID AS SETOR_ID','STR_NOME','SP_QUANTIDADE_ATUAL','SP_QUANTIDADE_MAXIMA','SP_QUANTIDADE_MINIMA','SP_PRODUTO_CUSTO_MEDIO','SP_PRECO_CUSTO','SP_PRECO_VENDA','SP_PRODUTO_LOCAL_INTERNO'
         ])
         ->join([['inner','produto','setor_produto.SP_PRODUTO_ID','produto.PRODUTO_ID'],
             ['inner','setor','setor_produto.SP_SETOR_ID','setor.SETOR_ID']
@@ -23,6 +23,26 @@ class EstoqueModel extends Model
             return $this->procedureSP(
                 'cadastrar_produto_setor',
                 [
+                    $post['produto'],
+                    $post['setor'],
+                    $post['qtdAtual'],
+                    $post['qtdMax'],
+                    $post['qtdMin'],
+                    $post['precoCusto'],
+                    $post['precoVenda'],
+                    $post['ref']
+                ]);
+        }
+        return [];
+    }
+
+    public function editar(array $post,int $id) :array
+    {
+        if ($this->validarDados($post)) {
+            return $this->procedureSP(
+                'editar_produto_setor',
+                [   
+                    $id,
                     $post['produto'],
                     $post['setor'],
                     $post['qtdAtual'],

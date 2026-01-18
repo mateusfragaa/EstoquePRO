@@ -9,6 +9,7 @@ $produtoSetor = $_SESSION['setorProduto'] ?? [];
                 <th class="ps-4" style="width: 40px;">
                     <input class="form-check-input" type="checkbox" id="checkAll">
                 </th>
+                <th>Cod</th>
                 <th>Cód Produto</th>
                 <th>Produto</th> 
                 <th>Cód Setor</th> 
@@ -26,8 +27,9 @@ $produtoSetor = $_SESSION['setorProduto'] ?? [];
             <?php foreach ($produtoSetor as $value) : ?>
                 <tr>
                     <td class="ps-4">
-                        <input class="form-check-input row-checkbox" type="checkbox" name="item[]" value="">
+                        <input class="form-check-input row-checkbox" type="checkbox" name="item[]" value="<?=$value['codigo']?>">
                     </td>
+                    <td class="fw-bold text-dark">#<?=$value['codigo']?></td>
                     <td class="fw-bold text-dark">#<?=$value['PRODUTO_ID']?></td>
                     <td class="fw-medium text-dark text-capitalize text-truncate" style="max-width: 250px;">
                         <?=$value['PRD_NOME']?>
