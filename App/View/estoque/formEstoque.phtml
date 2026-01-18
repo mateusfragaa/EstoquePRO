@@ -27,7 +27,7 @@ if (isset($_SESSION['setorProduto']) && !empty($_SESSION['setorProduto']) && cou
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label class="form-label">Produto</label>
-                            <select class="form-select" name="produto">
+                            <select class="<?= (isset($prodMod)) ? 'pe-none form-select' : ''?>" name="produto">
 
                                 <?php foreach($produtos as $value):?>
                                     <option value="<?=$value['PRODUTO_ID']?>"
@@ -41,7 +41,7 @@ if (isset($_SESSION['setorProduto']) && !empty($_SESSION['setorProduto']) && cou
 
                             <div class="col-md-4">
                                 <label class="form-label">Setor</label>
-                                <select class="form-select" name="setor">
+                                <select class="<?= (isset($prodMod)) ? 'pe-none form-select' : ''?>" name="setor">
 
                                     <?php foreach($setores as $value):?>
                                         <option value="<?=$value['SETOR_ID']?>"
@@ -74,21 +74,15 @@ if (isset($_SESSION['setorProduto']) && !empty($_SESSION['setorProduto']) && cou
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="form-label">Preço Custo</label>
-                                    <input type="number" class="form-control" placeholder="00.00" name="precoCusto"
-                                    value="<?=$prodMod['SP_PRECO_CUSTO'] ?? '' ?>">
+                                    
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="form-label">Preço Venda</label>
-                                    <input type="number" class="form-control" placeholder="00.00" name="precoVenda"
-                                    value="<?=$prodMod['SP_PRECO_VENDA'] ?? '' ?>">
+                                    
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="form-label">Custo Médio</label>
-                                    <input type="number" class="form-control" placeholder="00.00" name="custoMedio" disabled
-                                    value="<?=$prodMod['SP_PRODUTO_CUSTO_MEDIO'] ?? '' ?>">
+                                    
                                 </div>
 
                                 <div class="mt-3 col-md-12" >

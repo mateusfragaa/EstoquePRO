@@ -85,14 +85,12 @@ class EstoqueController extends Action{
 
     public function editar() :void
     {
-        echo '<pre>';
-        print_r($_POST);
-        echo "</pre>";
         try{
             $_SESSION['setorProduto'] = Container::getModel('Estoque')->editar($_POST,$_SESSION['setor_produto_editando_id'])[0];
         }catch(Exception $e){
             var_dump($e);
         }
+        var_dump($_SESSION['setorProduto']);
         die();
         header("Location: /estoque/cadastro");
         exit();

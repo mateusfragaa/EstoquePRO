@@ -38,6 +38,7 @@ class EstoqueModel extends Model
 
     public function editar(array $post,int $id) :array
     {
+        var_dump($post,$id);
         if ($this->validarDados($post)) {
             return $this->procedureSP(
                 'editar_produto_setor',
@@ -58,7 +59,7 @@ class EstoqueModel extends Model
 
     public function validarDados(array $post) :bool
     {
-        var_dump($post);
+        
         $retorno = true;
         if ( !isset($post['produto']) || !is_numeric($post['produto'])) {
             $retorno = false;
